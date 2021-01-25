@@ -48,7 +48,7 @@ class TicTacToe:
 	def mainloop(self):
 		self.window.mainloop()
 
-	def initialize_board(self, event):
+	def draw_the_board(self):
 		self.width = self.canvas.winfo_width() if self.canvas.winfo_width() != 1 else 600
 		self.height = self.canvas.winfo_height() if self.canvas.winfo_width() != 1 else 600
 		self.canvas.delete('grid_line')
@@ -67,6 +67,9 @@ class TicTacToe:
 				self.canvas.create_line([(0, i), (self.width, i)], tag='grid_line')
 			self.y_coordinates[count] = i
 			count += 1
+
+	def initialize_board(self, event):
+		self.draw_the_board()
 
 		# Redraw the board
 		for i in range(3):
@@ -91,6 +94,8 @@ class TicTacToe:
 		self.player_x_starts = not self.player_x_starts
 		self.player_x_turns = self.player_x_starts
 		self.board_status = np.zeros(shape=(3, 3))
+
+		self.draw_the_board()
 
 	# ------------------------------------------------------------------
 	# Drawing Functions:
